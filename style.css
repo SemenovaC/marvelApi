@@ -134,7 +134,38 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .button-container {
+    display: flex;
+  }
+
   .save-confirmed {
     right: 25px;
+  }
+
+  .marvel {
+    margin-left: 20px;
+  }
+
+  .load-btn {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .marvel {
+    font-size: 17px;
+    margin-left: 12px;
+  }
+
+  .button-container {
+    display: flex;
+  }
+
+  .load-btn {
+    margin-right: 12px;
+    height: 26px;
+    width: 110px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 }

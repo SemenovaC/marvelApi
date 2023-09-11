@@ -7,9 +7,8 @@ const caractersContainer = document.querySelector('.caracters-container'),
 
 
 const myKey = '24fb738ede4848e6a32599dd48d52b65';
-const offset = 243;
+let baseOffset = 243;
 const limit = 33;
-const apiUrl = `https://gateway.marvel.com:443/v1/public/characters?&limit=${limit}&offset=${offset}&apikey=${myKey}`;
 
 
 let caractersArray = [];
@@ -106,9 +105,11 @@ function removeFavorite(itemUrl) {
 
 
 // Get Data from Api
-async function getCaractersFromApi() {
+async function getCaractersFromApi(offset = baseOffset) {
+
   loader.classList.remove('hidden');
-  const response = await fetch(apiUrl);
+
+  const response = await fetch(`https://gateway.marvel.com:443/v1/public/characters?&limit=${limit}&offset=${offset}&apikey=${myKey}`);
   caractersArray = await response.json();
 
   updatedCaractersArray = caractersArray.data.results;
@@ -116,6 +117,7 @@ async function getCaractersFromApi() {
   console.log(updatedCaractersArray);
   makeCaracter('results');
 }
+
 
 
 // Event Listeners
@@ -128,9 +130,9 @@ toAllBtn.addEventListener('click', () => {
 })
 
 loadMoreBtn.addEventListener('click', () => {
-  getCaractersFromApi(apiUrl);
+  getCaractersFromApi(baseOffset +=33);
 })
 
 
 
-getCaractersFromApi();
+getCaractersFromApi(baseOffset);
